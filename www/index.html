@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+  <title>Freshly Pressed</title>
+
+  <!-- Ionic Libs -->
+  <link rel="stylesheet" href="lib/ionic/css/ionic.css">
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+  <script src="cordova.js"></script>
+  <!-- My app -->
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js"></script>
+
+
+</head>
+<body ng-controller="AppCtrl">
+      <ion-header-bar class="bar-balanced">
+        <h1 class="title"> Freshly Pressed! </h1>
+        <button class="button" ng-click="refresh()">
+          <i class="icon ion-refresh"></i>
+        </button>
+      </ion-header-bar>
+
+      <ion-content>
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
+        <div ng-show="!posts.length">
+          <br><br>
+          <center>
+            <h1>Pull To Refresh</h1>
+          </center>
+        </div>
+        <div class="card list" ng-repeat="post in posts">
+
+          <div class="item item-avatar-left">
+            <img src="img/ionic.png" ng-src="{{ post.author.avatar_URL }}">
+            <h2>{{ post.author.nice_name }}</h2>
+            <p>{{ post.author.URL }}</p>
+          </div>
+          <div class="item item-body">
+            <h1>{{ post.title }}</h1>
+            <div ng-bind-html="post.content"></div>
+          </div>
+        
+        </div>
+
+      </ion-content>
+</body>
+</html>
